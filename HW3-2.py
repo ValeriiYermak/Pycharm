@@ -18,7 +18,9 @@ assert d == [1, 2, 4, 5, 7, 10, 14, 20, 28, 35, 70, 140, 76079, 152158, 304316, 
 import concurrent.futures
 import logging
 import time
-from multiprocessing import Pool, current_process, cpu_count
+import os
+from multiprocessing import Pool, cpu_count
+
 
 
 def factorize(numbers: list) -> list:
@@ -60,8 +62,9 @@ if __name__ == "__main__":
     stream_handler = logging.StreamHandler()
     logger.addHandler(stream_handler)
     logger.setLevel(logging.DEBUG)
-    count_core = cpu_count()
+    count_core = os.cpu_count()
     start_time_multy = time.time()
+    print (count_core)
 
 
     with Pool(processes=count_core) as pool:
